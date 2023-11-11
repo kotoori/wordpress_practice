@@ -1803,8 +1803,13 @@ select:focus {
 }
 
 .search-field {
+  margin-top: 10px;
   padding-right: 70px;
   width: 100%;
+}
+
+.search-field_dummy{
+  display: none;
 }
 
 .search-submit {
@@ -1818,6 +1823,14 @@ select:focus {
   right: 24px;
   top: 50%;
   transform: translateY(-50%);
+}
+
+.search-submit2{
+  display: block;
+  margin-top: 10px;
+  width: 300px;
+  margin: 0 auto;
+  background-color: #d81f32;
 }
 
 .tagcloud {

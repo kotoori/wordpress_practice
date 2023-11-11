@@ -196,3 +196,41 @@ function my_contact_btn_shortcode($attrs, $content){
 }
 add_shortcode('contact-btn', 'my_contact_btn_shortcode');
 
+//ACFの特定のフィールドキー(field_xxxxxxxxxxx)を取得する
+function get_acf_fieldKey($arg){
+  $args = array(
+    'posts_per_page' => -1,
+    'post_type' => 'acf-field',
+    'post_status' => 'publish',
+  );
+  $the_query = new WP_Query($args);
+  if($the_query->have_posts()){
+    while($the_query->have_posts()){
+      $the_query->the_post();
+//      global $post;
+      $current_post = $the_query->post;
+      if(get_post_status($current_post->post_parent) != 'acf-disabled'){
+        $acfFieldKeys[] = array(
+          'id' => $current_post->ID,
+          'parent_id' => $current_post->post_parent,
+          'parent_name' => get_the_title($current_post->post_parent),
+          'label' => $current_post->post_title,
+          'name' => $current_post->post_excerpt,
+          'field_key' => $current_post->post_name,
+        );
+      }
+    }
+    $acfFieldKeys = json_decode(json_encode($acfFieldKeys));
+  }
+  wp_reset_postdata();
+  if(!empty($acfFieldKeys)){
+    foreach($acfFieldKeys as $val){
+      if($val->label == $arg || $val->name == $arg){
+        $fieldKey = $val->field_key;
+        break;
+      }
+    }
+  }
+  return $fieldKey;
+}
+
