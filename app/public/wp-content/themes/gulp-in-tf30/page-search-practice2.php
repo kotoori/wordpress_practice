@@ -30,35 +30,6 @@
 <div class="entry-body">
   <?php the_content(); ?>
   <?php get_search_form(); ?>
-  <table>
-    <?php get_field('company'); ?>
-    <hr>
-    <?php if(get_field('company')): ?>
-      <tr>
-        <th>会社名</th>
-        <td><?php the_field('company'); ?></td>
-      </tr>
-    <?php endif; ?>
-    <?php if(get_field('url')): ?>
-      <tr>
-        <th>サイトURL</th>
-        <td><?php the_field('url'); ?></td>
-      </tr>
-    <?php endif; ?>
-    <?php if(get_field('position')): ?>
-      <tr>
-        <th>担当範囲</th>
-        <td><?php the_field('position'); ?></td>
-      </tr>
-    <?php endif; ?>
-    <?php if(get_field('kibo')): ?>
-      <tr>
-        <th>規模</th>
-        <td><?php the_field('kibo'); ?></td>
-      </tr>
-    <?php endif; ?>
-  </table>
-  <hr>
 
   <?php my_link_pages(); ?>
 </div><!-- /entry-body -->
