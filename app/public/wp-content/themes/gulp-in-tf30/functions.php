@@ -207,7 +207,6 @@ function get_acf_fieldKey($arg){
   if($the_query->have_posts()){
     while($the_query->have_posts()){
       $the_query->the_post();
-//      global $post;
       $current_post = $the_query->post;
       if(get_post_status($current_post->post_parent) != 'acf-disabled'){
         $acfFieldKeys[] = array(
